@@ -1,0 +1,219 @@
+---
+title: "robogint"
+output: 
+  html_document:
+    includes:
+      in_body: "https://platform.twitter.com/widgets.js"
+---
+
+<style>
+
+img {
+ align: center;
+ padding: 20px;
+}
+
+</style>
+
+---
+
+
+Herb Gintis is a difficult to explain economist. [Schooling in Capitalist America](https://en.wikipedia.org/wiki/Schooling_in_Capitalist_America), written with Sam Bowles in the 1970s, is still my favorite in that literature. Their "correspondence principle" between the orginization of schools and workplaces is probably not a singularly sufficient explanation of education, but it seems to me to be the appropriate starting point. I believe there are many passages where you could update some of the words, using neoliberal capitalism instead of capitalism, for example, and pass them as descriptions of supposedly new developments. As with most topics, the debates over education presume a weird golden age when society was dedicated to nurturing individuals independent of economic concerns. 
+
+Although he never became a standard economist, he certainly rejected his more radical past over time. And in a very radical way. He went from pushing concerns for alienated labor into technical economic papers ([1974](https://www.jstor.org/stable/2525867?seq=1)) to attacking an opinionated but very orthodox economist like Paul Krugman as too partisan and concerned about inequality ([2007](https://www.amazon.com/review/R26YBOD86NQRGB).
+
+Gintis taught Game Theory at UMass one last time during my first year in graduate school. I didn't take it then, and never got to meet him. There would be very little reason too. Nonetheless, he is definitely an interesting person, and interesting things get me through the day. At some point I discovered his Amazon.com [reviews](https://www.amazon.com/gp/profile/amzn1.account.AFDFZ3BNKPQ3UZ6E77LT5YCFHLCA/)). Maybe the vicious critique of Krugman was making the rounds. His opinions aside, what most interested me was the absolute level of activity. He is nowhere near the top reviewers, but I never thought of amazon.com reviews as something an academic does. A significant amount of it seems to be motivated by old school science wars concerns, marking the "rigorous" and the "psuedo-intellectual," in popular science and philosophy texts, but every once in a while you get his thoughts on a microwaveable meal or a mouse trap.
+
+
+<img src="images/mouse_trap.jpg">
+
+
+While the common household product reviews could be written by anyone, the totality of them, in terms of both range of topics and sentiment, could only be written by one person in human history. I thought that was decent material for making a twitter bot.
+
+---
+
+
+<script async language = "JavaScript" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en">
+<a class="twitter-timeline" data-width="600" data-height="550" href="https://twitter.com/RGintis?ref_src=twsrc%5Etfw">Tweets by RGintis</a> 
+
+</blockquote>
+
+---
+
+## Scraping Amazon.com Reviews
+
+As far as I know there is no immediate way of scraping review information based on a user, which kind of makes sense. Who would do that? Well if there is another soul in the world who might consider doing so, it is actually easy using selenium in Python. The first step is to find their reviews. If you go to their personal site it is easy to find previews of their reviews, but they are not the full reviews, which is fine since we have links in the "profile-at-review-link" classname. Unfortunately, you need to scroll to get more reviews to appear. Scraping some html is easy but I don't have Selenium experience. I found the solution [here](https://michaeljsanders.com/2017/05/12/scrapin-and-scrollin.html).
+
+
+```{python, echo = TRUE, eval = FALSE}
+
+import time
+import pickle
+from selenium import webdriver
+
+chromedriver_path = ""
+user_profile = ""
+driver = webdriver.Chrome(executable_path = '')
+
+driver.get("")
+
+# totally working infinite scroll solution
+# thanks https://michaeljsanders.com/2017/05/12/scrapin-and-scrollin.html
+
+lenOfPage = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+match=False
+
+while(match == False):
+    lastCount = lenOfPage
+    time.sleep(3)
+    lenOfPage = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+    if lastCount==lenOfPage:
+        match=True
+```
+
+
+Now you can just grab the links as you would with a static website and pickle them for later use. One small problem is you get a doubling of links. Maybe I should have cleaned that up here. Instead I dealing with in step two.
+
+
+```{python, echo = TRUE, eval = FALSE}
+
+profile_review_elements = driver.find_elements_by_class_name("profile-at-review-link")
+
+review_links = [e.get_attribute("href") for e in profile_review_elements]
+
+
+with open('review_links.pkl', 'wb') as file:
+    pickle.dump(review_links, file)
+
+
+driver.quit()
+
+```
+
+
+---
+
+Once we have all of our links getting the review text and titles were very straightforward with class names. The rating, which is presented as a number of stars did not work at first. Using the xpath and "innerHTML" did the trick.
+
+---
+
+```{python, echo = TRUE, eval = FALSE}
+
+with open('review_links.pkl', 'rb') as f:
+    review_links = pickle.load(f)
+
+# for some reason selenium has given me double links. removing doubles.
+
+review_links = review_links[slice(0, len(review_links), 2)]
+
+
+driver = webdriver.Chrome(executable_path ='C:/Users/josep/chromedriver')
+
+ratings = []
+titles = []
+texts = []
+
+
+for link in review_links:
+    driver.get(link)
+    titles.append(driver.find_element_by_class_name('review-title-content').text)
+    texts.append(driver.find_element_by_class_name("review-text-content").text)
+    ratings.append(driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[1]/div/div/div/div/div[2]/a[1]/i/span").get_attribute("innerHTML"))
+
+df = pd.DataFrame(list(zip(ratings, texts, titles)), columns =['Ratings', 'Text', 'Title'])
+
+```
+
+---
+
+## Making Some Tweets
+
+There are many good twitterbot tutorials out there, but for the sake of completeness, here is a simple way to generate and post a tweet. I have this scheduled on [pythonanywhere.com](pythonanywhere.com) which sends the kindest support emails ever. I used only the review texts as source. It could use more cleaning in terms of syntax and formatting but I tell myself I like not preventing some uglier tweets to better appreciate the good ones. 
+
+This was made much easier by defaultdict. We simply for loop through the split text, appending the next ($i+1$) word to the values associated with each ($i$) word key. The append method is simple because it will create the key if it doesn't already exist. If it does, it adds that value. Each word in the text (except for the last) is associated with all the words that followed it. Words that most frequently follow will be proportionately represented so randomly grabbing one, and then in the same logic another, and so on, creates a simple [Markov chain](https://en.wikipedia.org/wiki/Markov_chain).
+
+There is probably a cleaner way of finding an optimal word length that fits in a tweet, but given the variation in character lengths I try to create a longer tweet and just re-generate until one gets under 140. Forcing the character limit almost always led to very abrupt endings (for example, tweets ending with "the").
+
+
+```{python, echo = TRUE, eval = FALSE}
+
+import random
+import tweepy
+from keys import *
+from collections import defaultdict
+
+# tweepy stuff
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, other_token)
+
+api = tweepy.API(auth)
+
+# import data
+
+texts = ''
+
+text_file = ''
+
+f = open(text_file, 'r', encoding='utf-8')
+
+texts = f.read()
+
+texts = texts.split()
+
+# generate default dictionary
+
+gintis_text_dict = defaultdict(list)
+
+for i in range(0, len(texts)-1):
+    gintis_text_dict[texts[i]].append(texts[i+1])
+
+
+# generate tweet function
+
+
+def generate_gintis(length):
+
+    review = []
+    new_word = random.choice(texts)
+    review.append(new_word)
+
+# create text length words long
+
+    for i in range(0, length-1):
+        new_word = random.choice(gintis_text_dict[review[i]])
+        review.append(new_word)
+
+# if we are not at a period, let's just keep adding words.
+# i might try skipping this part sometime.
+
+    while review[-1][-1] != '.':
+        review.append(random.choice(gintis_text_dict[review[-1]]))
+
+
+    review = " ".join(review)
+
+    review = review.replace("(", "")
+    review = review.replace(")", "")
+    review = review.replace('"', "")
+    review = review.capitalize()
+
+    return(review)
+
+
+# now we create a tweet
+
+new_status = generate_gintis(12)
+
+# generate a new one if its too long
+
+while len(new_status) > 140:
+    new_status = generate_gintis(12)
+
+# update
+
+api.update_status(new_status)
+```
+

@@ -1,0 +1,56 @@
+title,faction,type,value,theory,critique,influence,quantity,ability
+demand,neutral,concept,0,1,0,0,16,
+supply,neutral,concept,0,0,1,0,4,
+reference,neutral,concept,3,2,0,0,20,
+argument,neutral,concept,2,0,2,0,20,
+Testy Exchange,neutral,controversy,3,0,0,1,1,
+Karl Marx,Marxist,theorist,7,1,2,2,2,"When drawn, show and choose theory or critique. You gain +1 theory (critique) for each card with theory (critique) drawn."
+Rosa Luxemburg,Marxist,theorist,5,0,1,1,2,"When played, you may appropriate 1 card from the deck or 2 numeraire from opponent."
+Paul Sweezy,Marxist,theorist,4,2,2,1,2,"When played, you may discard two cards to double theory/critique."
+Adam Smith,Classical,theorist,4,3,0,3,2,"At end of game, other classical theorists have +1 influence"
+David Ricardo ,Classical,theorist,5,2,1,1,2,"At end of game, gain +1 influence for each 2 concepts in deck."
+Thomas Malthus,Classical,theorist,4,0,3,1,2,"At end of game, before scoring, opponent must discard one theorist if able."
+Leon Walras,Neoclassical,theorist,7,1,0,2,2,"When played, draw 3."
+Alfred Marshall,Neoclassical,theorist,5,1,1,3,2,"When played, you may switch theory/critique values of played cards."
+Vilfredo Pareto,Neoclassical,theorist,6,0,3,1,2,"When played, offer opponent a choice (1) you draw 6-N; they draw N or (2) you draw 1; they draw 0."
+Thorstein Veblen,Heterodox,theorist,4,0,0,2,2,Gain 2 numeraire. Opponent shows hand. Veblen may emulate any card shown.
+Joan Robinson,Heterodox,theorist,5,1,2,2,2,"When played, opponent must discard 1 or pay 4 Numeraire."
+James Crotty,Heterodox,theorist,5,2,0,1,2,"When played, you may flip and shuffle card pool. Unflip at start of your next turn."
+Water-Diamond Paradox,neutral,controversy,4,na,na,4,2,"When won, next card you acquire costs 1 less."
+General Gluts,neutral,controversy,5,na,na,4,2,"Next turn, your opponent can not acquire concepts"
+Cambridge Capital Controvery,neutral,controversy,6,na,na,5,2,You may trash card in card pool or hand.
+The Monetarist Controversy,neutral,controversy,3,na,na,4,2,
+Value Theory,neutral,controversy,8,na,na,4,2,Gain +6 Numeraire
+Socialist Calculation,neutral,controversy,7,na,na,3,2,Redistribute Numeraire until equal.
+Macroeconometrics,neutral,controversy,8,na,na,8,2,
+Interpersonal Utility,neutral,controversy,5,na,na,6,2,
+Production and Distribution,neutral,controversy,8,na,na,6,2,"Each player acquires a card of their choice, starting with opponent."
+Das Kapital 1 (1867),Marxist,text,6,1,0,4,3,Concepts have Synthesis: +1/+1
+Die Akkumulation des Kapitals (1913),Marxist,text,6,0,1,2,2,You may trash a demand/supply for a reference/argument
+Theorien über den Mehrwert (1863),Marxist,text,6,1,0,2,2,"If you've played another Marxist card this turn, non-Marxist cards cost 1 less theory"
+The Wealth of Nations,Classical,text,6,2,0,2,3,Controversies won while this card is in play earn +1 influence
+Principles of Political Economy and Taxation,Classical,text,6,1,0,2,2,Concepts acquired while this card is in play earn +1 influence
+An Essay on the Principle of Population,Classical,text,6,0,2,1,2,"If able, opponent must lose +2 numeraire when acquiring theorist."
+ Éléments d'économie politique pure (1874),Neoclassical,text,6,2,0,2,2,"Once per turn, trade text from discard pile for any non-controversy  in card pool."
+Grundsätze der Volkswirtschaftslehre (1871),Neoclassical,text,6,0,1,2,2,Gain 1 Numeraire at start of turn.
+Principles of Economics (1890),Neoclassical,text,6,4,1,1,3,
+The Theory of the Leisure Class,Heterodox,text,6,1,1,2,2,May emulate another text in play. Reverts when that text leaves.
+The Accumulation of Capital,Heterodox,text,6,2,2,3,3,
+If Women Counted,Heterodox,text,6,0,0,4,2,"Once per turn, search discard/deck for woman; add to your hand."
+labor power,Marxist,concept,3,2,1,1,4,Gain +1 numeraire per Theorist in card pool and in play.
+primitive accumulation,Marxist,concept,5,0,0,1,3,"When played, you may pay lose two influence to win controversy of up to 5 value."
+rate of exploitation,Marxist,concept,2,1,3,1,3,
+falling rate of profit,Marxist,concept,4,2,4,3,3,Lose 6 numeraire now or Devalue (1) card pool at end of your turn.
+stationary state,Classical,concept,2,0,0,5,3,"When played, gain +1 numeraire per text you have in play."
+unproductive labor,Classical,concept,4,3,3,2,3,Only concepts can be played on the turn you play Unproductive Labor.
+accumulation,Classical,concept,4,0,2,2,4,Gain +1 Numeraire per 3 Numeraire.
+division of labor,Classical,concept,3,1,1,3,3,Gain +1 Stats per Theorist played this turn.
+marginal utility,Neoclassical,concept,4,2,0,1,3,"When played, draw a card. The next card you play this turn gets -1 Theory"
+marginal product,Neoclassical,concept,4,0,2,1,3,"When played, draw a card. The next card you play this turn gets -1 Critique"
+indifference curve,Neoclassical,concept,2,0,0,1,3,"When played, draw a card. The next card's T/C stats can be redistributed."
+rational agent,Neoclassical,concept,3,1,1,1,4,"Draw two cards, play 1 and discard 1"
+conspicuous consumption,Heterodox,concept,4,0,2,1,4,"When played, this turn you may acquire opponent's in play text for V+2 each."
+dependence effect,Heterodox,concept,1,0,0,1,3,Gain +2 numeraire. Play this card on non-controversy in card pool. The next time your opponent acquires from card pool it must be this card. Trash dependence effect.
+fundamental uncertainty,Heterodox,concept,2,4/0,4/0,2,3,"Opponent chooses whether this is a 4,0 or 0,4"
+care work,Heterodox,concept,4,0,4,0,3,Opponent loses 2 numeraire if able.
+,,,,,,,183,

@@ -1,0 +1,27 @@
+name: "joseph rebello"
+output_dir: "."
+navbar:
+  title: "joseph rebello"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Writing"
+      href: writing.html
+    - text: "Fun or Games"
+      menu:
+          - text: "Robo Gint"
+            href: robogint.html
+          - text: "HET"
+            href: hetgame.html
+  right:
+    - icon: fa-twitter fa-lg
+      href: https://twitter.com/josephtrebello
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/joseph-rebello-2a894135/
+
+output:
+  html_document:
+    theme: simplex
+    

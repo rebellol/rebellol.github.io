@@ -1,0 +1,102 @@
+---
+title: "Deck of Economic Thought Play Test 1.0"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+
+
+## Hello!
+
+This is an Ascension style deckbuilder with a history of economic thought theme. Some of these cards were thought out with care. Some were randomly thrown together in the time that remained after finally breaking the spell young Walras' picture put on me. Absolutely none of these cards have been play tested in any form. 
+
+## Set Up
+
+Player Area: Each player recieves 8 Demand and 2 Supply cards, that are shuffled and placed face down in player areas as their starting personal deck. Each player draws 5.
+
+Reserves Area: All Reference, Argument, and Testy exchange cards are placed to side within reach of both players.
+
+Pool Area: Remaining cards are shuffled to create pool deck. Six are dealt face up in between players to create card pool.
+
+Influence and Numeraire: Figure out a way to assign influence (from an initial stock of 50) and reward numeraire (unlimited).
+
+Figure out who goes first in some wild and wacky fashion.
+
+## Player Turn
+
+On your turn, you may play any cards, resolving their effects and acquiring or winning cards from the pool or reserves. As long as you are able to do something (play cards, acquire cards, win cards, etc.) you may complete actions in any order. The turn is over when you can not, or do not want to, play cards, resolve effects, or acquire/win cards. Unless stated otherwise, card effects occur when they are played.
+
+You acquire a **concept**, **theorist**, or **text** card by paying their *value (V)* in *theory (T)*. Acquired cards go into your discard pile.
+
+You win a **controversy** by paying the *value (V)* in *critique (C)*. Won controversies are removed from the game after their influence is awarded and effects resolved.
+
+When you are doing with actions for the turn, add all of your played and unplayed cards to the discard pile. Draw 5 new cards. When you run out of cards, shuffle the discard pile and place face down as your deck. Any unused theory or critique is lost.
+
+*Numeraire (N)* are a currency that can exchanged for stats (theory and/or critique): 2N = 1 stat. Unlike theory or critique, numeraire can be accumulated over rounds. 
+
+## Game End
+
+The game ends when (1) the initial stock of 50 influence is exhausted and (2) player two has completed their turn.
+
+Any player who earns influence beyond the remaining stock while the game is ongoing receives the full reward. For example, during player one's turn they win a controversy with an influence of 8 and there are only 3 influence left. Player one wins 8 influence and completes their turn, earning more influence if able. Player two then takes their turn, again, earning influence if able. When player two has finished their turn, the game is over.
+
+Players add up the influence won in the game to the total influence of the cards on their decks. The player with the most influence wins.
+
+## Card Types
+
+There are four basic cards types. 
+
+**Controversies** allow you earn influence. They are won with *critique (C)*, after which they are removed from the game. The influence you earn from controversies happens when you win them.
+
+**Concepts**, **theorists**, and **texts** are acquired with *theory (T)*. They go into your discard pile, and eventually enter your deck and then hand. There is a cost to acquire, but no cost to play from hand. Concepts and theorists are played from hand, apply their effects, and then move to the discard pile at the end of turn. Texts remain in play indefinitely until they are critiqued. To critique a text in play, pay half the value of the text rounded up. The text is then discarded. The influence you earn from concepts, theorists, and texts happens after the game has ended. A concept with I = 2 is worth 2 influence at the end of the game, but those 2 influence have no effect during gameplay.
+
+For the most part, concepts and theorists play the same. There are exceptions with certain card effects that may apply to concepts and theorists differently. 
+
+There are five card factions.
+
+* **Neutral**. The faction of not having a faction. Supply and demand are here to annoy you. Seriously though, find me an tradition of economics that doesn't have some role for some notion of supply and demand.
+* **Classical Political Economy**. Production! These cards tend to provide extra points during final scoring.
+* **Marxist Political Economy**. Revolution! These cards tend to have potentially conflicting effects.
+* **Neoclassical**. Optimization! Drawing and diminishing returns. Dreamy Walras. 
+* **Heterodox**. Aggravation! Cards to annoy the opponent.
+
+Unless stated otherwise by a card's text, you are not restricted in what factions you acquire.  The factions are messy business. What the hell is heterodox anyhow? Is Menger really neoclassical? If the game ever gets balanced, the factions could be reworked, but I didn't want the theme of an economic thought themed game to get in the way of the game happening, so liberties were taken. Some of these concepts are in factions that are obviously the place they should go. Others are thrown into the best available faction. 
+
+As always, card text trumps rules text. Card text is trumped by me, the author who certainly knew what he meant, unless someone makes a death of the author argument. In that case, that someone is correct so card text trumps everything, including me but I'd rather you target the real undead zombie author - JK Rowling.
+
+## Instant Collapse Loss
+
+Feedback is appreciated but theming complaints during the game while under playtesting are automatic losses. No, the card Fundamental Uncertainty does not actually represent true uncertainty because this is a game. Congrats on being so thoughtful. You lose. Yeah, most of these Marxist cards are not truly dialectical. Cool, comrade. You lose. 
+
+## Key Words
+
+**Acquire.** Pay value in theory (concepts, texts, theorists) to gain card from card pool. Concepts, texts, theorists are placed directly in discard pile. 
+
+**Appropriate.** Take card from top of deck. Show and place in discard pile if a concept, theorist, ro text. If it is a controversy shuffle it back into the deck. 
+
+**Flipped.** A flipped card is turned face down. Only the player who has flipped a card may look at its face. If the other player wants to acquire/win a card that has been flipped, they choose the card without looking at its face. The card is then flipped back over. If they can acquire/win it with the stats in play, they do so and continue their turn. If they can not afford to, their turn is over. 
+
+**Value.** Cost to acquire or win card.
+ 
+**Numeraire.** Currency that accumulates and can be spent anytime during a turn to increase Theory or Critique by .5 each.
+
+**Stats.** Can be distributed between T/C according to player
+
+**Devalue (X).** Reduce the value of cards in pool by X. It is probably nice to have a way of marking which cards have been devalued and by how much.
+
+## New Player Tips
+
+Players without a gallery of economic theorist portraits in their foyer may have difficulty with the neoclassical theorist cards. There is a guy who looks like a walrus with the dreamy name Marshall and a guy who looks dreamy with the name Walras. Before engaging with any card related to a walrus, double-check the card text.
+
+## Card List
+
+```{r  echo=FALSE, results='asis'}
+library(knitr)
+cardData <- read.csv("deckbuilder.csv")
+kable(cardData[1:nrow(cardData)-1,])
+
+```
+
+

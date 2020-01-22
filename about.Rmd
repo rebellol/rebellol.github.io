@@ -1,0 +1,93 @@
+---
+title: ""
+
+---
+---
+
+
+
+## Hi
+
+
+([resume - pdf](pdfs/rebello_res.pdf))
+
+I'm a longtime academic economist looking to transition to a non-academic job. The things I'll miss most from academia will be interacting with students, who typically approach questions in diverse and fascinating ways, and the space for continuous education. I'm hoping to find a job that allows me to learn, explore, and problem solve with others. Teaching economics frequently involves introducing students to more math - both theoretical and empirical - than they are comfortable with. I've mentored many students looking to improve their statistics and coding. I'm very confident in my ability to interact with people who approach problems from different places with varying levels of comfort. I have generalist tendencies. For money, I'm definitely willing to hunker down in some narrowly defined space within a broader division of labor, but some variety in tasks are a plus for me. Given my background, I have more experience in languages like R and Python than in popular BI tools, but I'm always comfortable picking up something new.
+
+---
+
+## Education
+
+```{r, echo=FALSE}
+library(knitr)
+library(kableExtra)
+library(magrittr)
+
+education <- data.frame("Degree" = c("PhD Economics", "BA Political Science", "GED"),
+                        "Where" = c("University of Massachusetts, Amherst",
+                                    "University of Rhode Island",
+                                    "Abandoned Looking Building, Providence, RI"),
+                        "Year" = c(2012, 2002, 1997)
+                        )
+
+
+kable(education) %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(0, background = "white", color = "white")
+
+```
+
+---
+
+
+## Academic Positions
+
+```{r, echo = FALSE}
+academic_positions <- data.frame("Position" = c("Assistant Professor of Economics", "Assistant Professor of Economics",
+                                                "Visting Instructor"),
+                        "Where" = c("John Jay College of Criminal Justice, CUNY",
+                                    "Hobart and William Smith Colleges, Geneva, NY",
+                                    "Furman University, Greenville, SC"),
+                        "Year" = c("2014-2019", "2012-2014", "2011-2012")
+                        )
+
+
+kable(academic_positions) %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(0, background = "white", color = "white")
+
+```
+
+
+---
+
+## Skills
+
+```{r, echo = FALSE}
+skills <- data.frame(
+                        "Key" = c("Data Languages",
+                                   "Web Design" ,
+                                   "Human Languages"),
+                        "Values" = c("R, Python, SQL",
+                                 "Basic HTML/CSS/Javascript; Jeckyll; Wordpress; Familiarity with Django",
+                                 "English, Turkish (intermediate)")
+                        )
+
+
+kable(skills) %>% 
+  kable_styling(full_width = T) %>%
+  row_spec(0, background = "white", color = "white")
+
+```
+
+
+---
+
+## Teaching Experience
+
+---
+
+I've taught just about everything in economics at some point. At the Master's level I have taught micreconomics, history of economic thought, and research methods. At the undergraduate level, I frequently taught macroeconomics and money and banking after graduate school, but then shifting more towards economic history and political economy. I enjoyed teaching introductory classes, where you find students with ideas about the economy unblemished by economic training, and senior seminars where I work with students to try to put everything they've learned together into something meaningful for them.
+
+
+
+
